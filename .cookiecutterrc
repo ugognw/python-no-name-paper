@@ -1,0 +1,44 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ugognw/cookiecutter-pypaper python-no-name-paper
+#
+# See:
+#    https://pypi.org/project/cookiepatcher
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=python-no-name-paper/.cookiecutterrc gh:ugognw/cookiecutter-pypaper
+
+default_context:
+    chemistry_related: "yes"
+    cli_bin_name: "no_name_paper"
+    command_line_interface: "click"
+    distribution_name: "no-name-paper"
+    email: "ugognw@gmail.com"
+    full_name: "Ugochukwu Nwosu"
+    initialize_git_repository: "yes"
+    install_package: "yes"
+    install_precommit_hooks: "yes"
+    keywords: ""
+    license: "MIT license"
+    package_name: "no_name_paper"
+    physics_related: "yes"
+    pre_commit: "yes"
+    project_name: "No Name Paper"
+    project_short_description: "An example package. Generated with cookiecutter-pypaper."
+    pypi_disable_upload: "yes"
+    pytest_datadir: "yes"
+    pytest_xdist: "yes"
+    repo_main_branch: "main"
+    repo_name: "python-no-name-paper"
+    repo_username: "ugognw"
+    support_type_checking: "yes"
+    version: "0.0.0"
+    website: "https://github.com/ugognw/python-no-name-paper"
+    year_from: "2024"
+    year_to: "2024"

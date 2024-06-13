@@ -1,0 +1,184 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "no-name-paper"
+description = "An example package. Generated with cookiecutter-pypaper."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dynamic = ["version"]
+keywords = [
+]
+authors = [
+  { name = "Ugochukwu Nwosu", email = "ugognw@gmail.com" },
+]
+classifiers = [
+        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Private :: Do Not Upload",
+  "Topic :: Scientific/Engineering :: Chemistry",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = []
+
+[project.scripts]
+no_name_paper = 'no_name_paper.cli:main'
+
+[project.urls]
+Issues = "https://github.com/ugognw/python-no-name-paper/issues"
+Source = "https://github.com/ugognw/python-no-name-paper"
+
+[tool.coverage.run]
+branch = true
+parallel = true
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.hatch.envs.default]
+dependencies = [
+  "mypy==1.8.0",
+  "pytest==7.4.3",
+  "pytest-cov==4.1.0",
+  "pytest-datadir==1.5.0",
+  "pytest-xdist==3.5.0",
+  "ruff==0.4.8",
+]
+python = "3.11"
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "pytest -n auto --cov-branch --cov=src/no_name_paper --cov-report=html --cov-report=lcov --cov-report=xml --cov-report=term-missing {args:tests/}"
+
+[tool.hatch.envs.test]
+dependencies = [
+  "pytest==7.4.3",
+  "pytest-cov==4.1.0",
+  "pytest-datadir==1.5.0",
+  "pytest-xdist==3.5.0",
+]
+
+[[tool.hatch.envs.test.matrix]]
+python = [
+  "3.10",
+  "3.11",
+  "3.12",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+path = "src/no_name_paper/__about__.py"
+
+[tool.pytest.ini_options]
+addopts = [
+  "-n",
+  "auto",
+  "--import-mode=importlib",
+  "-r A",
+  "--strict-markers",
+  "--doctest-modules",
+  "--doctest-glob=*.rst",
+  "--tb=short",
+]
+filterwarnings =[
+  "error",
+]
+markers = []
+norecursedirs = "migrations"
+python_files = [
+  "test_*.py",
+  "*_test.py",
+  "tests.py"
+]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 79
+select = [
+  "A",
+  "ARG",
+  "B",
+  "C",
+  "C4",
+  "DTZ",
+  "E",
+  "EM",
+  "EXE",
+  "F",
+  "FBT",
+  "I",
+  "ICN",
+  "INT",
+  "ISC",
+  "N",
+  "PIE",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "PT",
+  "PTH",
+  "Q",
+  "RSE",
+  "RUF",
+  "S",
+  "SIM",
+  "T",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
+]
+ignore = [
+  # Allow non-abstract empty methods in abstract base classes
+  "B027",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Ignore checks for possible passwords
+  "S105", "S106", "S107", "S603",
+  # Ignore complexity
+  "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]  # allow module-import-not-at-top-of-file
+"**/{tests,docs,tools}/*" = ["E402"]  # allow module-import-not-at-top-of-file
+"**/tests/*" = ["S101"]  # allow assert
+
+[tool.ruff.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.isort]
+known-first-party = ["no_name_paper"]
+
+[tool.ruff.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
